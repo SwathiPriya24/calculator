@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8d9d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .heading {
+            position: absolute;
+            top: 95px;
+        }
+
+        .num {
+            background-color: #513d2b;
+            padding: 20px;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            /* max-width: 300px; */
+            box-shadow: 0 5px 8px rgba(30, 21, 10, 0.8);
+        }
+
+        .input {
+            grid-column: span 4;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            border: none;
+            outline: none;
+            width: 100%;
+            text-align: right;
+            font-size: 1.5rem;
+            /* box-shadow: 0 5px 8px rgba(30, 21, 10, 0.8); */
+        }
+
+        button {
+            background-color: #ddd;
+            border: none;
+            outline: none;
+            padding: 20px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #b3b3b3;
+        }
+
+        .equal {
+            justify-content: center;
+        }
+        .equal{
+            background-color: #a9a8a8;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="heading">
+        Calculator
+    </h2>
+    <div class="num">
+        <div class="input">
+            <input type="text" id="getInput" placeholder="0" readonly>
+        </div>
+        <button onclick="removeIp()">AC</button>
+        <button onclick="removeOp()">DEL</button>
+        <button onclick="getInputFns('%')">%</button>
+        <button onclick="getInputFns('/')">/</button>
+        <button onclick="getInputFns('1')">1</button>
+        <button onclick="getInputFns('2')">2</button>
+        <button onclick="getInputFns('3')">3</button>
+        <button onclick="getInputFns('+')">+</button>
+        <button onclick="getInputFns('4')">4</button>
+        <button onclick="getInputFns('5')">5</button>
+        <button onclick="getInputFns('6')">6</button>
+        <button onclick="getInputFns('-')">-</button>
+        <button onclick="getInputFns('00')">00</button>
+        <button onclick="getInputFns('0')">0</button>
+        <button onclick="getInputFns('.')">.</button>
+        <button onclick="getInputFns('*')">*</button>
+        <div class="nums">
+            <button class="equal" onclick="calculate()">=</button>
+        </div>
+
+    </div>
+
+    <script>
+        let getInput = document.getElementById('getInput');
+
+        function getInputFns(a) {
+            getInput.value += a;
+        }
+
+        function calculate() {
+            try {
+                getInput.value = eval(getInput.value);
+            } catch (error) {
+                getInput.value = "Invalid Calculation";
+                console.log(error);
+            }
+        }
+
+        function removeIp() {
+            getInput.value = "";
+        }
+
+        function removeOp() {
+            getInput.value = getInput.value.slice(0, -1);
+        }
+    </script>
+</body>
+
+</html>
